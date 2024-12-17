@@ -1,0 +1,7 @@
+my mongodb connection string: 
+mongodb+srv://programmer143143:<db_password>@cluster0.155qs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+username for mongo: programmer143143  <attached to programmer143143@gma>
+password: mongo@2000
+
+same for dbuser also
