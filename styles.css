@@ -1,0 +1,72 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif; /* Set a clean font for the body */
+    background-color: #f4f4f4; /* Light gray background color */
+    margin: 0; /* Remove default margin */
+    padding: 20px; /* Add padding around the body */
+}
+
+/* Header styles */
+h1 {
+    color: #333; /* Dark gray color for the main heading */
+    text-align: center; /* Center align the main heading */
+}
+
+/* Form styles */
+form {
+    background: #fff; /* White background for the form */
+    padding: 20px; /* Padding inside the form */
+    border-radius: 5px; /* Rounded corners for the form */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Maximum width for the form */
+    margin: 20px auto; /* Center the form horizontally */
+}
+
+/* Input field styles */
+input[type="text"],
+input[type="number"] {
+    width: 100%; /* Full width for input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin: 10px 0; /* Margin above and below input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners for input fields */
+}
+
+/* Button styles */
+button {
+    background-color: #28a745; /* Green background for buttons */
+    color: white; /* White text color for buttons */
+    border: none; /* Remove default border */
+    padding: 10px 15px; /* Padding inside buttons */
+    border-radius: 4px; /* Rounded corners for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Employee list styles */
+ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+li {
+    background: #fff; /* White background for list items */
+    margin: 10px 0; /* Margin above and below list items */
+    padding: 10px; /* Padding inside list items */
+    border-radius: 4px; /* Rounded corners for list items */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Link styles */
+a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
