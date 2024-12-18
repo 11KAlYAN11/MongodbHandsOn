@@ -5,3 +5,5 @@ username for mongo: programmer143143  <attached to programmer143143@gma>
 password: mongo@2000
 
 same for dbuser also
+
+From front end also we can able to do CRUD noe via server1 file. If wanna to check "node server1.js"

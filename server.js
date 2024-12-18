@@ -29,6 +29,23 @@ const Employee = mongoose.model('Employee', employeeSchema);
 
 // Routes
 
+// Root Endpoint
+app.get('/', async (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Employee API</title>
+      </head>
+      <body>
+        <h1>Welcome to Employee API</h1>
+        <h2>You are now in the root endpoint</h2>
+        <h3>Feel free to explore the <a href="/employees">/employees</a> endpoint from here!</h3>
+      </body>
+    </html>
+  `);
+});
+
 // 1. Insert Data (Create)
 app.post('/employees', async (req, res) => {
   try {
