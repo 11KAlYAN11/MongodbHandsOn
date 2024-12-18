@@ -10,9 +10,9 @@
       const employees = await response.json();
       const employeeList = document.getElementById('employeeList');
       employeeList.innerHTML = employees
-        .map(emp => `<li>${emp.name} - ${emp.position} 
-          <button onclick="deleteEmployee('${emp._id}')">Delete</button>
-          <button onclick="updateEmployee('${emp._id}')">Update</button>
+        .map(emp => `<li>${emp.name} - ${emp.position} - ${emp.age} - ${emp.department} - ${emp.salary} 
+          <button onclick="deleteEmployee('${emp._id}')"> Delete </button>
+          <button onclick="updateEmployee('${emp._id}')"> Update </button>
         </li>`)
         .join('');
     }
@@ -22,11 +22,13 @@
       const name = document.getElementById('name').value;
       const age = document.getElementById('age').value;
       const position = document.getElementById('position').value;
+      const department = document.getElementById('department').value;
+      const salary = document.getElementById('salary').value;
 
       await fetch('/employees', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, age, position })
+        body: JSON.stringify({ name, age, position, department, salary })
       });
       fetchEmployees();
     }
@@ -39,11 +41,14 @@
     function updateEmployee(id) {
       const name = prompt('Enter new name');
       const position = prompt('Enter new position');
+      const age = prompt('Enter new age');
+      const department = prompt('Enter new department');
+      const salary = prompt('Enter new salary: ');
       if (name && position) {
         fetch(`/employees/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, position })
+          body: JSON.stringify({ name, position, age, department, salary })
         }).then(fetchEmployees);
       }
     }
@@ -60,6 +65,10 @@
     <input type="number" id="age" required>
     <label for="position">Position:</label>
     <input type="text" id="position" required>
+    <label for="department">Department:</label>
+    <input type="text" id="department">
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary">
     <button type="submit">Add Employee</button>
   </form>
 
