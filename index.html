@@ -1,78 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declare the document type and version of HTML -->
+<html lang="en"> <!-- Start of the HTML document, specifying the language as English -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Management</title>
+  <meta charset="UTF-8"> <!-- Set the character encoding for the document to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings for mobile devices -->
+  <title>Employee Management</title> <!-- Title of the webpage displayed in the browser tab -->
   <script>
+    // Asynchronous function to fetch the list of employees from the server
     async function fetchEmployees() {
+      // Send a GET request to the '/employees' endpoint
       const response = await fetch('/employees');
+      // Parse the JSON response into a JavaScript object
       const employees = await response.json();
+      // Get the HTML element where the employee list will be displayed
       const employeeList = document.getElementById('employeeList');
+      // Populate the employee list with the fetched data
       employeeList.innerHTML = employees
         .map(emp => `<li>${emp.name} - ${emp.position} - ${emp.age} - ${emp.department} - ${emp.salary} 
           <button onclick="deleteEmployee('${emp._id}')"> Delete </button>
           <button onclick="updateEmployee('${emp._id}')"> Update </button>
         </li>`)
-        .join('');
+        .join(''); // Join the array of employee list items into a single string
     }
 
+    // Asynchronous function to add a new employee
     async function addEmployee(event) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent the default form submission behavior
+      // Get the values from the input fields
       const name = document.getElementById('name').value;
       const age = document.getElementById('age').value;
       const position = document.getElementById('position').value;
       const department = document.getElementById('department').value;
       const salary = document.getElementById('salary').value;
 
+      // Send a POST request to the '/employees' endpoint to add a new employee
       await fetch('/employees', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, age, position, department, salary })
+        method: 'POST', // Specify the request method as POST
+        headers: { 'Content-Type': 'application/json' }, // Set the content type to JSON
+        body: JSON.stringify({ name, age, position, department, salary }) // Convert the employee data to JSON
       });
-      fetchEmployees();
+      fetchEmployees(); // Call fetchEmployees to refresh the employee list after adding a new employee
     }
 
+    // Asynchronous function to delete an employee by ID
     async function deleteEmployee(id) {
+      // Send a DELETE request to the '/employees/:id' endpoint
       await fetch(`/employees/${id}`, { method: 'DELETE' });
-      fetchEmployees();
+      fetchEmployees(); // Refresh the employee list after deletion
     }
 
+    // Function to update an existing employee by ID
     function updateEmployee(id) {
+      // Prompt the user for new employee details
       const name = prompt('Enter new name');
       const position = prompt('Enter new position');
       const age = prompt('Enter new age');
       const department = prompt('Enter new department');
       const salary = prompt('Enter new salary: ');
+      // If the name and position are provided, send an update request
       if (name && position) {
         fetch(`/employees/${id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, position, age, department, salary })
-        }).then(fetchEmployees);
+          method: 'PUT', // Specify the request method as PUT
+          headers: { 'Content-Type': 'application/json' }, // Set the content type to JSON
+          body: JSON.stringify({ name, position, age, department, salary }) // Convert the updated employee data to JSON
+        }).then(fetchEmployees); // Refresh the employee list after updating
       }
     }
 
+    // Event listener to fetch employees when the DOM content is fully loaded
     document.addEventListener('DOMContentLoaded', fetchEmployees);
   </script>
 </head>
 <body>
-  <h1>Employee Management</h1>
-  <form id="employeeForm" onsubmit="addEmployee(event)">
-    <label for="name">Name:</label>
-    <input type="text" id="name" required>
-    <label for="age">Age:</label>
-    <input type="number" id="age" required>
-    <label for="position">Position:</label>
-    <input type="text" id="position" required>
-    <label for="department">Department:</label>
-    <input type="text" id="department">
-    <label for="salary">Salary:</label>
-    <input type="number" id="salary">
-    <button type="submit">Add Employee</button>
+  <h1>Employee Management</h1> <!-- Main heading for the page -->
+  <form id="employeeForm" onsubmit="addEmployee(event)"> <!-- Form to add a new employee -->
+    <label for="name">Name:</label> <!-- Label for the name input -->
+    <input type="text" id="name" required> <!-- Input field for employee name, required -->
+    <label for="age">Age:</label> <!-- Label for the age input -->
+    <input type="number" id="age" required> <!-- Input field for employee age, required -->
+    <label for="position">Position:</label> <!-- Label for the position input -->
+    <input type="text" id="position" required> <!-- Input field for employee position, required -->
+    <label for="department">Department:</label> <!-- Label for the department input -->
+    <input type="text" id="department"> <!-- Input field for employee department -->
+    <label for="salary">Salary:</label> <!-- Label for the salary input -->
+    <input type="number" id="salary"> <!-- Input field for employee salary -->
+    <button type="submit">Add Employee</button> <!-- Button to submit the form and add an employee -->
   </form>
 
-  <h2>Employee List</h2>
-  <ul id="employeeList"></ul>
+  <h2>Employee List</h2> <!-- Subheading for the employee list -->
+  <ul id="employeeList"></ul> <!-- Unordered list to display the list of employees -->
 </body>
 </html>
