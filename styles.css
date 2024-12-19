@@ -54,11 +54,18 @@ ul {
 }
 
 li {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out the content */
+    align-items: center; /* Center align items vertically */
     background: #fff; /* White background for list items */
     margin: 10px 0; /* Margin above and below list items */
     padding: 10px; /* Padding inside list items */
     border-radius: 4px; /* Rounded corners for list items */
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+li button {
+    margin-left: 10px; /* Space between buttons */
 }
 
 /* Link styles */

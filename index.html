@@ -16,9 +16,12 @@
       const employeeList = document.getElementById('employeeList');
       // Populate the employee list with the fetched data
       employeeList.innerHTML = employees
-        .map(emp => `<li>${emp.name} - ${emp.position} - ${emp.age} - ${emp.department} - ${emp.salary} 
-          <button onclick="deleteEmployee('${emp._id}')"> Delete </button>
-          <button onclick="updateEmployee('${emp._id}')"> Update </button>
+        .map(emp => `<li>
+          <span>${emp.name} - ${emp.position} - ${emp.age} - ${emp.department} - ${emp.salary}</span>
+          <div>
+            <button onclick="deleteEmployee('${emp._id}')"> Delete </button>
+            <button onclick="updateEmployee('${emp._id}')"> Update </button>
+          </div>
         </li>`)
         .join(''); // Join the array of employee list items into a single string
     }
